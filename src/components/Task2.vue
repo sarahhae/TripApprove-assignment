@@ -52,7 +52,10 @@
       </v-col>
       <v-col cols="12" sm="6">
         <v-data-table
-          :headers="headers"
+          :headers="[
+          { text: 'First Name', value: 'firstName' },
+          { text: 'Last Name', value: 'lastName' }
+          ]"
           :items="users"
           item-key="userInfo"
           hide-default-footer
@@ -73,16 +76,6 @@ export default {
         {
           firstName: '',
           lastName: '',
-        },
-      ],
-      headers: [
-        {
-          text: 'First Name',
-          value: 'firstName',
-        },
-        {
-          text: 'Last Name',
-          value: 'lastName',
         },
       ],
     };
