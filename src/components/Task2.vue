@@ -38,7 +38,6 @@
           <v-text-field 
           v-bind:class="submit"
           v-model="userInfo.firstName"
-          @focus="userInfo.firstName"
           @keypress="clearStatus"
           label="First Name" />
 
@@ -52,6 +51,7 @@
         </v-card>
       </v-col>
       <v-col cols="12" sm="6">
+
         <v-data-table
           :headers="[
             {text: 'First Name', value: 'firstName'},
@@ -59,6 +59,7 @@
           ]"
           hide-default-footer
         />
+        
       </v-col>
     </v-row>
   </v-container>
