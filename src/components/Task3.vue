@@ -58,7 +58,8 @@
 <script>
 /* eslint-disable */
 import { loadUsers } from "../mock.js";
-import { parse } from "date-fns"; // date-fns.org
+import { parse } from "date-fns";
+import { differenceInCalendarYears } from 'date-fns'; 
 
 export default {
   name: "Task3",
@@ -66,13 +67,12 @@ export default {
     users: [],
   }),
   created() {
-    const users = loadUsers(); // data from mock.js
+    const users = loadUsers(); 
     users.forEach((user) => {
-      // loop
       user.parsedDOB = parse(user.dateOfBirth, "dd/mm/yyyy", new Date());
-      // TODO: Name: combining user first name and last name
-      user.name = user.firstName + " " + user.lastName;
+      user.name = user.firstName + ' ' + user.lastName;
       // TODO: Age: in years rounded down
+      user.age = differenceInCalendarYears("dd/mm/yyyy", user.parsedDOB) // BUG: Shows age of NaN
     });
     console.table(users);
     this.users = users;
