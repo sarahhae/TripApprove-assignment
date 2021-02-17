@@ -68,9 +68,9 @@
     created () {
       const users = loadUsers()
       users.forEach(user => {
-        user.parsedDOB = parse(item.dateOfBirth, 'dd/dd/dddd', new Date())
+        user.parsedDOB = parse(user.dateOfBirth, 'dd/mm/yyyy', new Date())
       })
-      this.users = data
+      this.users = users;
     },
   }
   /* eslint-enable */
