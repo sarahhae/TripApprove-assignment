@@ -53,7 +53,8 @@
       <v-col cols="12" sm="6">
         <v-data-table
           :headers="headers"
-          :items="userInfo"
+          :items="users"
+          item-key="userInfo"
           hide-default-footer
         />
       </v-col>
@@ -67,20 +68,21 @@ export default {
   data() {
     return {
       submit: false,
+      users: [],
       userInfo: [
         {
-          firstName: "",
-          lastName: "",
+          firstName: '',
+          lastName: '',
         },
       ],
       headers: [
         {
           text: 'First Name',
-          value: 'firstName'
+          value: 'firstName',
         },
         {
           text: 'Last Name',
-          value: 'lastName'
+          value: 'lastName',
         },
       ],
     };
@@ -94,14 +96,16 @@ export default {
         this.error = true;
         return;
       }
+      this.$emit("newUser", this.userInfo);
+      this.users.push(this.userInfo);
       this.userInfo = {
         firstName: "",
         lastName: "",
       };
       this.clearStatus();
       this.submit = false;
-
     },
+
     clearStatus() {
       this.success = false;
       this.error = false;
