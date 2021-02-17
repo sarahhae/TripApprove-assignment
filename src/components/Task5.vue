@@ -38,6 +38,14 @@
           <v-card-text>
             <!-- EDIT CODE BELOW -->
             <v-data-table
+            :items="trips"
+            :headers="[
+            { text: 'ID', value: 'id' },
+            { text: 'Name', value: 'name' },
+            { text: 'Travellers', value: 'travellers' },
+            { text: 'Destinations', value: 'destinations[0].location' },
+            { text: 'Status', value: 'status' }
+            ]"
             />
           </v-card-text>
         </v-card>
