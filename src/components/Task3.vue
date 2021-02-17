@@ -71,8 +71,7 @@ export default {
     users.forEach((user) => {
       user.parsedDOB = parse(user.dateOfBirth, "dd/mm/yyyy", new Date());
       user.name = user.firstName + ' ' + user.lastName;
-      // TODO: Age: in years rounded down
-      user.age = differenceInCalendarYears("dd/mm/yyyy", user.parsedDOB) // BUG: Shows age of NaN
+      user.age = differenceInCalendarYears(new Date(), user.parsedDOB);
     });
     console.table(users);
     this.users = users;
