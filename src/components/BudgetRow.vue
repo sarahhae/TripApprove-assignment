@@ -2,7 +2,9 @@
   <!-- EDIT CODE BELOW -->
   <v-row>
     <v-col cols="2">
+      <!-- TODO: When the button(-) is pressed (@click + function), it removes that specific BudgetRow(row) and updates the total budget. -->
       <v-btn
+      @click="removeBudgetRow"
         icon
         small
         dark
@@ -50,6 +52,9 @@
       this.budgetTypes = loadBudgetTypes()
     },
     methods: {
+      removeBudgetRow() {
+        // .splice() method
+      }
     },
   }
 </script>
