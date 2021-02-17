@@ -53,3 +53,13 @@
     },
   }
 </script>
+
+<style>
+
+.col-2 {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+</style>
