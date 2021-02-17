@@ -39,7 +39,6 @@
             <v-icon class="mr-4">mdi-account-circle</v-icon> My profile
           </v-card-title>
 
-    <!-- TODO: Set up @click toggle function to open and close -->
           <v-card-actions>
             <v-btn @click="toggle" color="primary" small text>
               toggle
@@ -88,7 +87,7 @@
     },
     methods: {
       toggle() {
-        this.isActive = !isActive // Whatever the state is, make logic opposite. This being toggle. BUG: showing isActive undefined.
+        this.isActive = !this.isActive
       },
     },
   }
