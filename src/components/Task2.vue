@@ -52,10 +52,8 @@
       </v-col>
       <v-col cols="12" sm="6">
         <v-data-table
-          :headers="[
-            { text: 'First Name', value: 'firstName' },
-            { text: 'Last Name', value: 'lastName' },
-          ]"
+          :headers="headers"
+          :items="userInfo"
           hide-default-footer
         />
       </v-col>
@@ -73,6 +71,16 @@ export default {
         {
           firstName: "",
           lastName: "",
+        },
+      ],
+      headers: [
+        {
+          text: 'First Name',
+          value: 'firstName'
+        },
+        {
+          text: 'Last Name',
+          value: 'lastName'
         },
       ],
     };
@@ -93,8 +101,6 @@ export default {
       this.clearStatus();
       this.submit = false;
 
-      // get newUser
-      // push newUser to userInfo
     },
     clearStatus() {
       this.success = false;
