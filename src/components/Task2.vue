@@ -31,9 +31,23 @@
     <!-- EDIT CODE BELOW -->
     <v-row>
       <v-col cols="12" sm="6">
-        <v-card class="pa-4">
-          <v-text-field label="First Name" />
-          <v-text-field label="Last Name" />
+
+        <v-card @submit="handleSubmit" class="pa-4"> <!-- TODO: handleSubmit function in methods. Define submit object data function(?) -->
+
+         <!-- Add class of submit input or valid input, create model of userInfo on firstName and lastName. Once entered, clear input status (clearStatus). -->
+          <v-text-field 
+          v-bind:class="submit"
+          v-model="userInfo.firstName"
+          @focus="userInfo.firstName"
+          @keypress="clearStatus"
+          label="First Name" />
+
+          <v-text-field 
+          v-bind:class="submit"
+          v-model="userInfo.lastName"
+          @keypress="clearStatus"
+          label="Last Name" />
+    <!-- @click save user info and clear input. Event handler. -->
           <v-btn color="primary">Save</v-btn>
         </v-card>
       </v-col>
@@ -54,9 +68,27 @@
   export default {
     name: 'Task2',
     data () {
-      return {}
+      return {
+        submit: false,
+        userInfo: [
+          {
+            firstName: '',
+            lastName:''
+          }
+        ]
+      }
     },
     methods: {
+      handleSubmit() {
+        // clearStatus input 
+        // if firstName || lastName === false, error is true
+        // get newUser
+        // push newUser to userInfo
+        // clearStatus input 
+      },
+      clearStatus() {
+        // clearStatus function while input text field is valid or invalid. 
+      }
     },
   }
 </script>
