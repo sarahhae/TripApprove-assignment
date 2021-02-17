@@ -39,13 +39,13 @@
             <v-icon class="mr-4">mdi-account-circle</v-icon> My profile
           </v-card-title>
 
+    <!-- TODO: Set up @click toggle function to open and close -->
           <v-card-actions>
-            <v-btn color="primary" small text>
+            <v-btn @click="toggle" color="primary" small text>
               toggle
             </v-btn>
           </v-card-actions>
 
-    <!-- TODO: Using v-bind:class to add a class of 'active'. Attach this 'active' class when isActive(variable) is false.  --> 
           <v-card-text v-bind:class="{ disabled: !isActive }" class="mx-4">
             <v-row no-gutters>
               <v-col cols="3">
@@ -83,17 +83,19 @@
     name: 'Task1',
     data () {
       return {
-        isActive: false, // Object is false when isActive. Storing the state of active data. If object is true, shows info data on screen. 
+        isActive: false, 
       }
     },
     methods: {
+      toggle() {
+        this.isActive = !isActive // Whatever the state is, make logic opposite. This being toggle. BUG: showing isActive undefined.
+      },
     },
   }
 </script>
 
 <style>
 
-/* class of .disabled to profile data/element. While card is active, display not shown. While card is disabled, it will have disabled style. */
 .disabled { 
   display: none;
 }
