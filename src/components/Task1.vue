@@ -40,7 +40,7 @@
           </v-card-title>
 
           <v-card-actions>
-            <v-btn @click="toggle" color="primary" small text>
+            <v-btn @click="toggleProfileInfo" color="primary" small text>
               toggle
             </v-btn>
           </v-card-actions>
@@ -86,7 +86,7 @@
       }
     },
     methods: {
-      toggle() {
+      toggleProfileInfo() {
         this.isActive = !this.isActive
       },
     },
