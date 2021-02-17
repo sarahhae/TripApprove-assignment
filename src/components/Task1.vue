@@ -45,7 +45,8 @@
             </v-btn>
           </v-card-actions>
 
-          <v-card-text class="mx-4">
+    <!-- TODO: Using v-bind:class to add a class of 'active'. Attach this 'active' class when isActive(variable) is false.  --> 
+          <v-card-text v-bind:class="{ disabled: !isActive }" class="mx-4">
             <v-row no-gutters>
               <v-col cols="3">
                 <strong>First Name:</strong>
@@ -81,9 +82,20 @@
   export default {
     name: 'Task1',
     data () {
-      return {}
+      return {
+        isActive: false, // Object is false when isActive. Storing the state of active data. If object is true, shows info data on screen. 
+      }
     },
     methods: {
     },
   }
 </script>
+
+<style>
+
+/* class of .disabled to profile data/element. While card is active, display not shown. While card is disabled, it will have disabled style. */
+.disabled { 
+  display: none;
+}
+
+</style>
