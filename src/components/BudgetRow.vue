@@ -2,8 +2,7 @@
   <!-- EDIT CODE BELOW -->
   <v-row>
     <v-col cols="2">
-      <!-- TODO: When the button(-) is pressed (@click + function), it removes that specific BudgetRow(row) and updates the total budget. -->
-      <v-btn @click="removeBudgetRow" icon small dark color="primary">
+      <v-btn @click="removeRow" icon small dark color="primary">
         <v-icon> mdi-minus-circle </v-icon>
       </v-btn>
     </v-col>
@@ -37,7 +36,7 @@ import { loadBudgetTypes } from "@/mock.js";
 
 export default {
   name: "BudgetRow",
-  props: ["value"],
+  props: ["value", "data", "index" ],
   data() {
     return {
       budgetType: null,
@@ -55,10 +54,10 @@ export default {
       }
       this.$emit("input", value);
     },
-    removeBudgetRow() {
-      // .splice() method
-      this.$data.splice(this.$data);
-    },
+    removeRow() {
+      console.log("Hello:", this.index);
+      this.$emit("remove", this.index);
+    }
   },
 };
 </script>

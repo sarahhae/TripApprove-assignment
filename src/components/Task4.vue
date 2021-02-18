@@ -45,11 +45,15 @@
       <v-col cols="12">
         <!-- EDIT CODE BELOW -->
         <v-card>
-          <!-- TODO: When a budget type(child element) is selected and or(&& ||) an amount(child element) entered, the total budget is updated(totalBudgets). -->
           <v-card-subtitle> Total budget: ${{ budgetSum }} </v-card-subtitle>
 
-          <v-card-text v-for="(row, i) in rowData" :key="i">
-            <BudgetRow v-model="rowData[i]"/>
+          <v-card-text v-for="(row, i) in rowData" :key="row.id">
+            <BudgetRow
+              v-model="rowData[i]"
+              :data="row"
+              :index="i"
+              @remove="removeRow(i)"
+            />
           </v-card-text>
 
           <v-card-actions>
@@ -67,7 +71,6 @@
 <script>
 import { loadBudgetTypes } from "../mock";
 import BudgetRow from "./BudgetRow";
-// import loadValue from "./BudgetRow";
 
 export default {
   name: "Task4",
@@ -77,18 +80,20 @@ export default {
   data() {
     return {
       rowData: [],
+      rowCount: 0,
     };
   },
   computed: {
     budgetSum() {
+      // console.log(this.rowData);
       let budgetSum = 0;
-      this.rowData.forEach(rowValue => {
+      this.rowData.forEach((rowValue) => {
         if (!isNaN(rowValue)) {
           budgetSum += Number(rowValue);
         }
       });
       return budgetSum;
-    }
+    },
   },
   methods: {
     addBudgetRow() {
@@ -96,9 +101,21 @@ export default {
         budgetType: null,
         budgetTypes: [],
         amount: null,
+        id: this.rowCount,
       };
       this.rowData.push(row);
       this.budgetType = loadBudgetTypes;
+      this.rowCount++;
+    },
+    removeRow(rowId) {
+      console.log("Remove parent");
+      console.log(rowId);
+      this.rowData = this.rowData.filter((val, index) => {
+        console.log({ rowId }, { index });
+        console.log(index !== rowId);
+        return index != rowId;
+      });
+      console.log("this rowdata", this.rowData);
     },
   },
 };
