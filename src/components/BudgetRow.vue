@@ -3,30 +3,26 @@
   <v-row>
     <v-col cols="2">
       <!-- TODO: When the button(-) is pressed (@click + function), it removes that specific BudgetRow(row) and updates the total budget. -->
-      <v-btn
-      @click="removeBudgetRow"
-        icon
-        small
-        dark
-        color="primary"
-      >
-        <v-icon>
-          mdi-minus-circle
-        </v-icon>
+      <v-btn @click="removeBudgetRow" icon small dark color="primary">
+        <v-icon> mdi-minus-circle </v-icon>
       </v-btn>
     </v-col>
+
     <v-col cols="5">
       <v-select
         v-model="budgetType"
         label="Budget Type"
         :items="budgetTypes"
-        :item-text="item => item.name"
+        :item-text="(item) => item.name"
+        @change="loadValue"
         return-object
       />
     </v-col>
+
     <v-col cols="5">
       <v-text-field
         v-model="amount"
+        @change="loadValue"
         class="currency-input"
         label="Enter amount"
         type="number"
@@ -37,34 +33,40 @@
 </template>
 
 <script>
-  import { loadBudgetTypes } from '@/mock.js'
+import { loadBudgetTypes } from "@/mock.js";
 
-  export default {
-    name: 'BudgetRow',
-    data () {
-      return {
-        budgetType: null,
-        budgetTypes: [],
-        amount: 0,
+export default {
+  name: "BudgetRow",
+  props: ["value"],
+  data() {
+    return {
+      budgetType: null,
+      budgetTypes: [],
+      amount: 0,
+    };
+  },
+  created() {
+    this.budgetTypes = loadBudgetTypes();
+  },
+  methods: {
+    loadValue(value) {
+      if (isNaN(value)) {
+        return;
       }
+      this.$emit("input", value);
     },
-    created () {
-      this.budgetTypes = loadBudgetTypes()
+    removeBudgetRow() {
+      // .splice() method
+      this.$data.splice(this.$data);
     },
-    methods: {
-      removeBudgetRow() {
-        // .splice() method
-      }
-    },
-  }
+  },
+};
 </script>
 
 <style>
-
 .col-2 {
   align-items: center;
   justify-content: center;
   display: flex;
 }
-
 </style>

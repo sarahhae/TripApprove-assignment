@@ -46,10 +46,10 @@
         <!-- EDIT CODE BELOW -->
         <v-card>
           <!-- TODO: When a budget type(child element) is selected and or(&& ||) an amount(child element) entered, the total budget is updated(totalBudgets). -->
-          <v-card-subtitle> Total budget: ${{ totalBudgets }} </v-card-subtitle>
+          <v-card-subtitle> Total budget: ${{ budgetSum }} </v-card-subtitle>
 
           <v-card-text v-for="(row, i) in rowData" :key="i">
-            <BudgetRow data="row" />
+            <BudgetRow v-model="rowData[i]"/>
           </v-card-text>
 
           <v-card-actions>
@@ -65,7 +65,9 @@
 </template>
 
 <script>
+import { loadBudgetTypes } from "../mock";
 import BudgetRow from "./BudgetRow";
+// import loadValue from "./BudgetRow";
 
 export default {
   name: "Task4",
@@ -74,9 +76,19 @@ export default {
   },
   data() {
     return {
-      totalBudgets: 0,
       rowData: [],
     };
+  },
+  computed: {
+    budgetSum() {
+      let budgetSum = 0;
+      this.rowData.forEach(rowValue => {
+        if (!isNaN(rowValue)) {
+          budgetSum += Number(rowValue);
+        }
+      });
+      return budgetSum;
+    }
   },
   methods: {
     addBudgetRow() {
@@ -86,7 +98,7 @@ export default {
         amount: null,
       };
       this.rowData.push(row);
-      console.log(this.rowData);
+      this.budgetType = loadBudgetTypes;
     },
   },
 };
