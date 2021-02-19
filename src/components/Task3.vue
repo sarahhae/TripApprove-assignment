@@ -58,8 +58,7 @@
 <script>
 /* eslint-disable */
 import { loadUsers } from "../mock.js";
-import { parse } from "date-fns";
-import { differenceInCalendarYears } from 'date-fns'; 
+import { parse, differenceInCalendarYears } from "date-fns";
 
 export default {
   name: "Task3",
@@ -73,7 +72,6 @@ export default {
       user.name = user.firstName + ' ' + user.lastName;
       user.age = differenceInCalendarYears(new Date(), user.parsedDOB);
     });
-    console.table(users);
     this.users = users;
   },
 };

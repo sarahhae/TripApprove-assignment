@@ -52,7 +52,7 @@
               v-model="rowData[i]"
               :data="row"
               :index="i"
-              @remove="removeRow(i)"
+              @remove="() => removeRow(i)"
             />
           </v-card-text>
 
@@ -85,7 +85,6 @@ export default {
   },
   computed: {
     budgetSum() {
-      // console.log(this.rowData);
       let budgetSum = 0;
       this.rowData.forEach((rowValue) => {
         if (!isNaN(rowValue)) {
@@ -108,10 +107,7 @@ export default {
       this.rowCount++;
     },
     removeRow(rowId) {
-      console.log("Remove parent");
-      console.log(rowId);
       this.rowData = this.rowData.filter((val, index) => {
-        console.log({ rowId }, { index });
         console.log(index !== rowId);
         return index != rowId;
       });

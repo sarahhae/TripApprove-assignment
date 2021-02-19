@@ -36,7 +36,7 @@ import { loadBudgetTypes } from "@/mock.js";
 
 export default {
   name: "BudgetRow",
-  props: ["value", "data", "index" ],
+  props: ["value", "data", "index"],
   data() {
     return {
       budgetType: null,
@@ -55,9 +55,8 @@ export default {
       this.$emit("input", value);
     },
     removeRow() {
-      console.log("Hello:", this.index);
       this.$emit("remove", this.index);
-    }
+    },
   },
 };
 </script>
